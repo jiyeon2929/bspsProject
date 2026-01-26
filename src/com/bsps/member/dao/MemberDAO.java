@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import com.bsps.member.vo.LoginVO;
 import com.bsps.member.vo.MemberVO;
 import com.bsps.util.db.DB;
 
