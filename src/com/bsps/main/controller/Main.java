@@ -12,7 +12,7 @@ public class Main {
 			
 			// 환영 인사
 			System.out.println("---------------------------------");
-			System.out.println(" 방갑습니다. 좋은 시간 되세요.~~~~~~");
+			System.out.println(" 안녕하세요 ");
 			System.out.println("---------------------------------\n");
 			
 			
