@@ -1,24 +1,20 @@
 package com.bsps.rent.controller;
 
+import java.util.List;
+
 import com.bsps.rent.service.RentService;
+import com.bsps.rent.vo.RentVO;
 import com.bsps.util.io.In;
 
 public class RentController {
 
     private RentService service = new RentService();
 
-    // ⭐ 대출/반납 메인 메뉴 (입구)
     public void execute() throws Exception {
-
         while (true) {
-            System.out.println("\n<<< 대출 / 반납 관리 >>>");
-            System.out.println("=========================================");
-            System.out.println(" 1. 도서 대출");
-            System.out.println(" 2. 도서 반납");
-            System.out.println(" 0. 이전 메뉴");
-            System.out.println("=========================================");
-
-            String menu = In.getStr("메뉴 입력");
+            System.out.println("\n<<< 대출/반납 하기 >>>");
+            System.out.println("1. 도서대출  2. 도서반납  3. 리스트  0. 이전");
+            String menu = In.getStr("메뉴");
 
             switch (menu) {
             case "1":
@@ -27,43 +23,44 @@ public class RentController {
             case "2":
                 returnBook();
                 break;
+            case "3":
+                list();
+                break;
             case "0":
                 return;
-            default:
-                System.out.println("잘못된 입력입니다.");
             }
         }
     }
 
-    // 대출
     private void rent() throws Exception {
-
-        System.out.println("\n<책 대출 처리>");
-
-        String title = In.getStr("제목");
-        In.getStr("출판사");
-        In.getStr("작성자");
+        int bookNo = Integer.parseInt(In.getStr("도서 번호"));
+        String name = In.getStr("이름");
         String pw = In.getStr("비밀번호");
 
-        service.rentBook("test", title, pw);
+        RentVO vo = new RentVO(bookNo, name, pw);
+        service.rent(vo);
 
-        System.out.println("******* 대출 완료 되었습니다. ********");
+        System.out.println("******* 대출 완료 ********");
     }
 
-    // 반납
     private void returnBook() throws Exception {
-
-        System.out.println("\n<책 반납 처리>");
-
         int no = Integer.parseInt(In.getStr("글 번호"));
-        String pw = In.getStr("본인 확인용 비밀번호");
+        String pw = In.getStr("비밀번호");
 
         boolean result = service.returnBook(no, pw);
+        System.out.println(result ? "******* 반납 완료 ********" : "비밀번호 오류");
+    }
 
-        if (result) {
-            System.out.println("******* 반납 완료 되었습니다. ********");
-        } else {
-            System.out.println("⚠ 글 번호 또는 비밀번호가 올바르지 않습니다.");
+    private void list() throws Exception {
+        List<RentVO> list = service.list();
+
+        System.out.println("이름 / 대출일 / 상태");
+        for (RentVO vo : list) {
+            System.out.println(
+                vo.getMemberNm() + " / " +
+                vo.getRentDate() + " / " +
+                vo.getStatus()
+            );
         }
     }
 }

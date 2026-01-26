@@ -1,54 +1,42 @@
 package com.bsps.rent.vo;
 
+import java.util.Date;
+
 public class RentVO {
 
     private int rentNo;
-    private String memberId;
-    private String bookTitle;
-    private String rentDate;
-    private String status;
+    private int bookNo;
+    private String memberNm;
+    private Date rentDate;
     private String password;
+    private String status;
 
-    public RentVO(int rentNo, String password, String status) {
-        this.rentNo = rentNo;
+    // 기본 생성자
+    public RentVO() {}
+
+    // 대출용 생성자
+    public RentVO(int bookNo, String memberNm, String password) {
+        this.bookNo = bookNo;
+        this.memberNm = memberNm;
         this.password = password;
-        this.status = status;
     }
 
-    public RentVO(String memberId, String bookTitle, String rentDate, String status) {
-        this.memberId = memberId;
-        this.bookTitle = bookTitle;
-        this.rentDate = rentDate;
-        this.status = status;
-    }
+    // getter / setter
+    public int getRentNo() { return rentNo; }
+    public void setRentNo(int rentNo) { this.rentNo = rentNo; }
 
-    public int getRentNo() {
-        return rentNo;
-    }
+    public int getBookNo() { return bookNo; }
+    public void setBookNo(int bookNo) { this.bookNo = bookNo; }
 
-    public String getPassword() {
-        return password;
-    }
+    public String getMemberNm() { return memberNm; }
+    public void setMemberNm(String memberNm) { this.memberNm = memberNm; }
 
-    public String getStatus() {
-        return status;
-    }
+    public Date getRentDate() { return rentDate; }
+    public void setRentDate(Date rentDate) { this.rentDate = rentDate; }
 
-    public String getMemberId() {
-        return memberId;
-    }
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
 
-    public String getBookTitle() {
-        return bookTitle;
-    }
-
-    public String getRentDate() {
-        return rentDate;
-    }
-
-	@Override
-	public String toString() {
-		return "RentVO [rentNo=" + rentNo + ", memberId=" + memberId + ", bookTitle=" + bookTitle + ", rentDate="
-				+ rentDate + ", status=" + status + ", password=" + password + "]";
-	}
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 }

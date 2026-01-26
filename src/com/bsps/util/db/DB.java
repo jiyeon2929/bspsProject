@@ -11,8 +11,8 @@ public class DB {
 		private static final String DRIVER = "oracle.jdbc.OracleDriver";
 		//private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
 		private static final String URL = "jdbc:oracle:thin:@10.15.21.219:1521:xe";
-		private static final String UID = "java";
-		private static final String UPW = "java";
+		private static final String UID = "bsps";
+		private static final String UPW = "bsps";
 	
 		
 		static {

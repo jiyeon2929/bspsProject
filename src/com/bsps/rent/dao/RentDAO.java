@@ -1,59 +1,81 @@
 package com.bsps.rent.dao;
 
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.bsps.rent.vo.RentVO;
 import com.bsps.util.db.DB;
 
 public class RentDAO {
 
-	// 1. 대출 등록
-	public void rent(String memberId, String title, String password) throws Exception {
+    // 1. 대출 등록
+    public void insert(RentVO vo) throws Exception {
+        String sql = """
+            INSERT INTO rent
+            VALUES (rent_seq.NEXTVAL, ?, ?, SYSDATE, ?, '대출중')
+        """;
 
-		String sql = "SELECT rent_no, password, status " + "FROM rent " + "WHERE rent_no = ?";
+        try (Connection con = DB.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
-		try (Connection con = DB.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, vo.getBookNo());
+            ps.setString(2, vo.getMemberNm());
+            ps.setString(3, vo.getPassword());
+            ps.executeUpdate();
+        }
+    }
 
-			ps.setString(1, memberId);
-			ps.setString(2, title);
-			ps.setString(3, password);
-			ps.executeUpdate();
-		}
-	}
+    // 2. 비밀번호 확인
+    public String getPassword(int rentNo) throws Exception {
+        String sql = "SELECT password FROM rent WHERE rent_no=? AND status='대출중'";
 
-	// 2. 글 번호로 대출 정보 조회 (반납 전 검증용)
-	public RentVO getByNo(int rentNo) throws Exception {
+        try (Connection con = DB.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
-		String sql = """
-				    SELECT rent_no, password, status
-				    FROM rent
-				    WHERE rent_no = ?
-				""";
+            ps.setInt(1, rentNo);
+            ResultSet rs = ps.executeQuery();
 
-		try (Connection con = DB.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+            if (rs.next()) return rs.getString("password");
+        }
+        return null;
+    }
 
-			ps.setInt(1, rentNo);
-			ResultSet rs = ps.executeQuery();
+    // 3. 반납 처리
+    public void returnBook(int rentNo) throws Exception {
+        String sql = "UPDATE rent SET status='반납' WHERE rent_no=?";
 
-			if (rs.next()) {
-				return new RentVO(rs.getInt("rent_no"), rs.getString("password"), rs.getString("status"));
-			}
-		}
-		return null;
-	}
+        try (Connection con = DB.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
-	// 3. 반납 처리
-	public void returnBook(int rentNo) throws Exception {
+            ps.setInt(1, rentNo);
+            ps.executeUpdate();
+        }
+    }
 
-		String sql = "UPDATE rent SET status='반납' WHERE rent_no=?";
+    // 4. 리스트 조회
+    public List<RentVO> list() throws Exception {
+        List<RentVO> list = new ArrayList<>();
 
-		try (Connection con = DB.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+        String sql = """
+            SELECT rent_no, member_nm, rent_date, status
+            FROM rent
+            ORDER BY rent_date DESC
+        """;
 
-			ps.setInt(1, rentNo);
-			ps.executeUpdate();
-		}
-	}
+        try (Connection con = DB.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                RentVO vo = new RentVO();
+                vo.setRentNo(rs.getInt("rent_no"));
+                vo.setMemberNm(rs.getString("member_nm"));
+                vo.setRentDate(rs.getDate("rent_date"));
+                vo.setStatus(rs.getString("status"));
+                list.add(vo);
+            }
+        }
+        return list;
+    }
 }
