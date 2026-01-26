@@ -28,17 +28,17 @@ public class Main {
 				// 3. 메인 메뉴 처리
 				switch (menu) {
 				case "1":
-					// System.out.println("일반게시판 처리");
+					 System.out.println("회원관리");
 					// System.out.println("BoardController 실행 전.---------");
 					new BoardController().execute();
 					// System.out.println("BoardController 실행 후.---------");
 					break;
 				case "2":
-					System.out.println("회원관리");
+					System.out.println(" 일반게시판");
 					
 					break;
 				case "3":
-
+					System.out.println("대출반납관리");
 					
 					break;
 				case "0":
