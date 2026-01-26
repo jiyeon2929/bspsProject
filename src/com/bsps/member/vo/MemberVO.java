@@ -1,18 +1,20 @@
 package com.bsps.member.vo;
 
-import java.sql.Timestamp;
 
 public class MemberVO {
 	
 	private String id;
 	private String pw;
 	private String name;
+	private String gender;
+	private String birth;
 	private String tel;
 	private String email;
- 	private Timestamp joinDate; //회원이 가입한 날짜, 시간
-	private String role; // 일반회원인지  일반 관리자인지 판단.
+	private String regDate;
+	private String conDate;
 	private String status;
-	
+	private Integer gradeNo;
+	private String gradeName;
 	
 	
 	// 회원가입용 생성자
@@ -34,6 +36,18 @@ public class MemberVO {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public String getBirth() {
+		return birth;
+	}
+	public void setBirth(String birth) {
+		this.birth = birth;
+	}
 	public String getTel() {
 		return tel;
 	}
@@ -46,17 +60,17 @@ public class MemberVO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Timestamp getJoinDate() {
-		return joinDate;
+	public String getRegDate() {
+		return regDate;
 	}
-	public void setJoinDate(Timestamp joinDate) {
-		this.joinDate = joinDate;
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
 	}
-	public String getRole() {
-		return role;
+	public String getConDate() {
+		return conDate;
 	}
-	public void setRole(String role) {
-		this.role = role;
+	public void setConDate(String conDate) {
+		this.conDate = conDate;
 	}
 	public String getStatus() {
 		return status;
@@ -64,14 +78,27 @@ public class MemberVO {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
-	
-	
+	public Integer getGradeNo() {
+		return gradeNo;
+	}
+	public void setGradeNo(Integer gradeNo) {
+		this.gradeNo = gradeNo;
+	}
+	public String getGradeName() {
+		return gradeName;
+	}
+	public void setGradeName(String gradeName) {
+		this.gradeName = gradeName;
+	}
 	@Override
 	public String toString() {
-		return "MemberVO [id=" + id + ", pw=" + pw + ", name=" + name + ", tel=" + tel + ", email=" + email
-				+ ", joinDate=" + joinDate + ", role=" + role + ", status=" + status + "]";
+		return "MemberVO [id=" + id + ", pw=" + pw + ", name=" + name + ", gender=" + gender + ", birth=" + birth
+				+ ", tel=" + tel + ", email=" + email + ", regDate=" + regDate + ", conDate=" + conDate + ", status="
+				+ status + ", gradeNo=" + gradeNo + ", gradeName=" + gradeName + "]";
 	}
-
-
+	
 }
+	
+	
+	
+	
