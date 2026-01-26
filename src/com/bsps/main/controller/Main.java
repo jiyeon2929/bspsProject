@@ -2,7 +2,9 @@ package com.bsps.main.controller;
 
 
 import com.bsps.board.controller.BoardController;
+import com.bsps.book.controller.BookController;
 import com.bsps.util.io.In;
+
 
 public class Main {
 
@@ -30,15 +32,18 @@ public class Main {
 				case "1":
 					 System.out.println("회원관리");
 					// System.out.println("BoardController 실행 전.---------");
-					new BoardController().execute();
+					
+
 					// System.out.println("BoardController 실행 후.---------");
 					break;
 				case "2":
 					System.out.println(" 일반게시판");
+					new BoardController().execute();
 					
 					break;
 				case "3":
 					System.out.println("대출반납관리");
+					new BookController().execute();
 					
 					break;
 				case "0":
