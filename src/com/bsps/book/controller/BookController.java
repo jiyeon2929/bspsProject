@@ -20,7 +20,7 @@ public class BookController {
 			try { // 정상처리
 				// 일반게시판 처리
 				// 1. 일반게시판 메뉴 출력
-				System.out.println("<<< 대출/반납 하기 >>>");
+				System.out.println("<<<대출/반납 하기 >>>");
 				System.out.println("=========================================");
 				System.out.println(" 1. 리스트  2. 대출  3. 반납");
 				System.out.println(" 0. 이전 메뉴");
@@ -53,7 +53,8 @@ public class BookController {
 				case "3":
 					System.out.println("< 반납 하기 >");
 					vo = new BookVO();
-					vo.setNo(In.getLong("글 번호"));
+					vo.setWriter(In.getStr("이름"));
+					vo.setTitle(In.getStr("책 제목"));
 					vo.setPw(In.getStr("본인 확인용 비밀번호"));
 					result = (Integer) Execute.execute(new BookUpdateService(), vo);
 					if(result >= 1) System.out.println("\n******* 반납 완료 되었습니다. *********");
@@ -76,7 +77,8 @@ public class BookController {
 				e.printStackTrace(); // 개발자를 위한 예외 상세 출력
 				// 사용자를 위한 예외 코드 작성
 				System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-				System.out.println(" **오류가 발생되었습니다.**");
+				System.out.println(" 일반 게시판 처리 중 오류가 발생되었습니다.");
+				System.out.println(" 다시 한번 실행해 주시고 오류가 계속되면 오류 게시판에 남겨 주세요.");
 				System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n");
 			} // catch 의 끝
 		}// while(true) 의 끝

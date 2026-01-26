@@ -24,7 +24,7 @@ public class BookDAO {
 		
 		con = DB.getConnection();		
 
-		String sql = "select no, title, writer, to_char(writeDate, 'yyyy-mm-dd') writeDate, "
+		String sql = "select no, title,content, writer, to_char(writeDate, 'yyyy-mm-dd') writeDate, "
 				+ " status from book order by no desc";
 		
 		pstmt = con.prepareStatement(sql);
@@ -36,6 +36,7 @@ public class BookDAO {
 				BookVO vo = new BookVO();
 				vo.setNo(rs.getLong("no"));
 				vo.setTitle(rs.getString("title"));
+				vo.setContent(rs.getString("content"));
 				vo.setWriter(rs.getString("writer"));
 				vo.setWriteDate(rs.getString("writeDate"));
 				vo.setStatus(rs.getString("status"));
@@ -74,11 +75,12 @@ public class BookDAO {
 		Integer result = 0;
 		
 		con = DB.getConnection();
-		String sql = "update book set status = '반납' where no = ? and pw = ?";
+		String sql = "update book set status = '반납' where writer = ? and  title = ?  and pw = ?";
 	
 		pstmt = con.prepareStatement(sql);
-		pstmt.setLong(1, vo.getNo());
-		pstmt.setString(2, vo.getPw());
+		pstmt.setString(1, vo.getWriter());
+		pstmt.setString(2, vo.getTitle());
+		pstmt.setString(3, vo.getPw());
 		result = pstmt.executeUpdate();
 		
 		DB.close(con, pstmt);
