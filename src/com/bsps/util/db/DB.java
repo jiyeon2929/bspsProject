@@ -10,7 +10,11 @@ public class DB {
 	// DB 연결 정보
 		private static final String DRIVER = "oracle.jdbc.OracleDriver";
 		private static final String URL = "jdbc:oracle:thin:@10.15.21.219:1521:xe";
+<<<<<<< HEAD
+		private static final String UID = "bsps";
+=======
 		private static final String UID = "bsps ";
+>>>>>>> branch 'master' of https://github.com/jiyeon2929/bspsProject.git
 		private static final String UPW = "bsps";
 	
 		
