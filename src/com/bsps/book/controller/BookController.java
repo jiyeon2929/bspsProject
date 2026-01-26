@@ -12,10 +12,6 @@ import com.bsps.main.service.Execute;
 
 
 public class BookController {
-<<<<<<< HEAD
-	
-}
-=======
 
 	// PL이 메서드 이름을 정한다.
 	public void execute() {
@@ -91,4 +87,4 @@ public class BookController {
 
 	
 }// 클래스의 끝
->>>>>>> branch 'master' of https://github.com/jiyeon2929/bspsProject.git
+
