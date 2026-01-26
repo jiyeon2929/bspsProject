@@ -1,18 +1,11 @@
 package com.bsps.main.controller;
 
-<<<<<<< HEAD
+
 import com.bsps.board.controller.BoardController;
-import com.bsps.rent.controller.RentController;
 import com.bsps.util.io.In;
 
-=======
-
-
-// 클래스에는 접근제한자는 public 과 default를 사용한다. public 클래스는 파일명과 같아야만 한다.
-// 팀 프로젝트 시 PL(프로젝트 리더) 개발
->>>>>>> branch 'master' of https://github.com/jiyeon2929/bspsProject.git
 public class Main {
-<<<<<<< HEAD
+
 		public static void main(String[] args) throws Exception {
 			
 			// 환영 인사
@@ -45,7 +38,7 @@ public class Main {
 					
 					break;
 				case "3":
-					new RentController().execute();
+
 					
 					break;
 				case "0":
@@ -68,11 +61,4 @@ public class Main {
 			}// while(true) 의 끝
 			
 	}	// main()의 끝
-
-=======
-	public static void main(String[] args) {
-		
-	}
->>>>>>> branch 'master' of https://github.com/jiyeon2929/bspsProject.git
 }
-

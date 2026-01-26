@@ -14,4 +14,9 @@ public class In {
         System.out.print(msg + " : ");
         return Integer.parseInt(sc.nextLine());
     }
+
+	public static long getLong(String string) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
