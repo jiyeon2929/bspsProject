@@ -19,7 +19,7 @@ public class Main {
 				// 1. 메인 메뉴 출력
 				System.out.println("<<< 메인 메뉴 >>>");
 				System.out.println("=========================================");
-				System.out.println(" 1. 회원관리  2. 도서관리  3. 대출반납관리");
+				System.out.println(" 1. 회원관리  2. 일반게시판  3. 대출반납관리");
 				System.out.println(" 0. 프로그램 종료");
 				System.out.println("=========================================");
 				// 2. 메인 메뉴 입력
@@ -30,12 +30,12 @@ public class Main {
 				case "1":
 					// System.out.println("일반게시판 처리");
 					// System.out.println("BoardController 실행 전.---------");
-					new BoardController().execute();
 					// System.out.println("BoardController 실행 후.---------");
 					break;
 				case "2":
-					System.out.println("회원관리");
-					
+					System.out.println("일반게시판");
+					new BoardController().execute();
+
 					break;
 				case "3":
 
