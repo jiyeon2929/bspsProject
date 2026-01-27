@@ -2,7 +2,7 @@ package com.bsps.util.io;
 
 import java.util.List;
 
-import com.webjjang.board.vo.BoardVO;
+
 
 public class BoardPrint {
 
