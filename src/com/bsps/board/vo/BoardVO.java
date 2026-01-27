@@ -4,15 +4,14 @@ import java.sql.Date;
 
 public class BoardVO {
 
-    private long no;          // 글번호
-    private String title;     // 제목
-    private String content;   // 내용
-    private String writer;    // 작성자
-    private Date writeDate;   // 작성일
-    private long hit;         // 조회수
-    private String pw;        // 비밀번호
+    private long no;
+    private String title;
+    private String content;
+    private String writer;
+    private Date writeDate;
+    private long hit;
+    private String pw;
 
-    // getter / setter
     public long getNo() {
         return no;
     }
