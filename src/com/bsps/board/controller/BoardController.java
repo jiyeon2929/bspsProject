@@ -46,6 +46,9 @@ public class BoardController {
     private void view() throws Exception {
         long no = In.getLong("글 번호");
         BoardVO vo = service.view(no);
+        
+        
+        
         System.out.println("제목 : " + vo.getTitle());
         System.out.println("작성자 : " + vo.getWriter());
         System.out.println("내용 : " + vo.getContent());

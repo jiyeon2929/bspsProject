@@ -15,8 +15,14 @@ public class In {
         return Integer.parseInt(sc.nextLine());
     }
 
-	public static long getLong(String string) {
+    //-- 수정
+    public static long getLong(String msg) {
+        System.out.print(msg + " : "); // 메시지 출력
+        // 문자열로 입력받아 long 타입으로 변환 (버퍼 문제를 방지하기 위해 nextLine 사용)
+        return Long.parseLong(sc.nextLine()); 
+    }
+	//public static long getLong(String string) {
 		// TODO Auto-generated method stub
-		return 0;
-	}
+		//return 0;
+	//}
 }

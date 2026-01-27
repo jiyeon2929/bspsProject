@@ -60,9 +60,9 @@ public class BoardDAO {
     public BoardVO view(long no) throws Exception {
         BoardVO vo = null;
 
-        String sql =
-            "SELECT no, title, content, writer, writedate, hit " +
-            "FROM board WHERE no = ?";
+     // BoardDAO.java 수정
+        String sql = "SELECT no, title, content, writer, writedate, hit" // 1. 끝에 공백 확인
+                   + " FROM board WHERE no = ?";                        // 2. FROM 앞에 공백 추가
 
         try (
             Connection con = DB.getConnection();
