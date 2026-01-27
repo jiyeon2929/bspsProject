@@ -3,6 +3,7 @@ package com.bsps.main.controller;
 
 import com.bsps.board.controller.BoardController;
 import com.bsps.book.controller.BookController;
+import com.bsps.member.controller.MemberController;
 import com.bsps.util.io.In;
 
 public class Main {
@@ -36,7 +37,7 @@ public class Main {
             // 3. 메인 메뉴 처리
             switch (menu) {
             case "1":
-            	    
+            	    new MemberController().execute();
                // System.out.println("일반게시판 처리");
                // System.out.println("BoardController 실행 전.---------");
                // System.out.println("BoardController 실행 후.---------");
