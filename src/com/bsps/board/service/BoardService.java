@@ -22,8 +22,12 @@ public class BoardService {
         return dao.view(no);
     }
 
-    // ⭐ 제목만 수정
     public boolean updateTitle(BoardVO vo) throws Exception {
         return dao.updateTitle(vo) == 1;
+    }
+
+    // ⭐ 글삭제
+    public boolean delete(long no, String pw) throws Exception {
+        return dao.delete(no, pw) == 1;
     }
 }

@@ -17,8 +17,8 @@ public class BoardDAO {
             "FROM board ORDER BY no DESC";
 
         try (Connection con = DB.getConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql);
-             ResultSet rs = pstmt.executeQuery()) {
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
                 BoardVO vo = new BoardVO();
@@ -33,24 +33,24 @@ public class BoardDAO {
         return list;
     }
 
-    // 2. 글 등록
+    // 2. 글등록
     public void write(BoardVO vo) throws Exception {
         String sql =
             "INSERT INTO board(no, title, content, writer, pw) " +
             "VALUES(board_seq.nextval, ?, ?, ?, ?)";
 
         try (Connection con = DB.getConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
-            pstmt.setString(1, vo.getTitle());
-            pstmt.setString(2, vo.getContent());
-            pstmt.setString(3, vo.getWriter());
-            pstmt.setString(4, vo.getPw());
-            pstmt.executeUpdate();
+            ps.setString(1, vo.getTitle());
+            ps.setString(2, vo.getContent());
+            ps.setString(3, vo.getWriter());
+            ps.setString(4, vo.getPw());
+            ps.executeUpdate();
         }
     }
 
-    // 3. 글 보기
+    // 3. 글보기
     public BoardVO view(long no) throws Exception {
         BoardVO vo = null;
 
@@ -59,10 +59,10 @@ public class BoardDAO {
             "FROM board WHERE no = ?";
 
         try (Connection con = DB.getConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
-            pstmt.setLong(1, no);
-            try (ResultSet rs = pstmt.executeQuery()) {
+            ps.setLong(1, no);
+            try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     vo = new BoardVO();
                     vo.setNo(rs.getLong("no"));
@@ -82,25 +82,38 @@ public class BoardDAO {
         String sql = "UPDATE board SET hit = hit + 1 WHERE no = ?";
 
         try (Connection con = DB.getConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
-            pstmt.setLong(1, no);
-            pstmt.executeUpdate();
+            ps.setLong(1, no);
+            ps.executeUpdate();
         }
     }
 
-    // ⭐ 5. 제목만 수정 (content 수정 ❌)
+    // 5. 제목만 수정
     public int updateTitle(BoardVO vo) throws Exception {
         String sql =
             "UPDATE board SET title = ? WHERE no = ? AND pw = ?";
 
         try (Connection con = DB.getConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
-            pstmt.setString(1, vo.getTitle());
-            pstmt.setLong(2, vo.getNo());
-            pstmt.setString(3, vo.getPw());
-            return pstmt.executeUpdate();
+            ps.setString(1, vo.getTitle());
+            ps.setLong(2, vo.getNo());
+            ps.setString(3, vo.getPw());
+            return ps.executeUpdate();
+        }
+    }
+
+    // ⭐ 6. 글삭제
+    public int delete(long no, String pw) throws Exception {
+        String sql = "DELETE FROM board WHERE no = ? AND pw = ?";
+
+        try (Connection con = DB.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setLong(1, no);
+            ps.setString(2, pw);
+            return ps.executeUpdate();
         }
     }
 }
