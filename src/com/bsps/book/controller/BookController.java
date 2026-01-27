@@ -12,6 +12,7 @@ import com.bsps.main.service.Execute;
 
 public class BookController {
 
+
 	// PL이 메서드 이름을 정한다.
 	public void execute() {
 
@@ -19,7 +20,7 @@ public class BookController {
 			try { // 정상처리
 					// 일반게시판 처리
 					// 1. 일반게시판 메뉴 출력
-				System.out.println("<<<대출/반납 하기 >>>");
+				System.out.println("<<< 대출/반납 하기 >>>");
 				System.out.println("=========================================");
 				System.out.println(" 1. 리스트  2. 대출  3. 반납");
 				System.out.println(" 0. 이전 메뉴");
