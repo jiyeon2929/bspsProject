@@ -22,15 +22,8 @@ public class BoardService {
         return dao.view(no);
     }
 
-    public BoardVO viewForUpdate(long no, String pw) throws Exception {
-        return dao.viewWithPw(no, pw);
-    }
-
-    public void update(BoardVO vo) throws Exception {
-        dao.update(vo);
-    }
-
-    public boolean delete(long no, String pw) throws Exception {
-        return dao.delete(no, pw) == 1;
+    // ⭐ 제목만 수정
+    public boolean updateTitle(BoardVO vo) throws Exception {
+        return dao.updateTitle(vo) == 1;
     }
 }
