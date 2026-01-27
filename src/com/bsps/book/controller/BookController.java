@@ -2,6 +2,7 @@ package com.bsps.book.controller;
 
 import java.util.List;
 
+import com.bsps.book.Service.BookDeleteService;
 import com.bsps.book.Service.BookListService;
 import com.bsps.book.Service.BookUpdateService;
 import com.bsps.book.Service.BookWriteService;
@@ -23,7 +24,7 @@ public class BookController {
 				System.out.println("<<< 대출/반납 하기 >>>");
 				System.out.println("=========================================");
 				System.out.println(" 1. 리스트  2. 대출  3. 반납");
-				System.out.println(" 0. 이전 메뉴");
+				System.out.println(" 4.반납도서삭제 0. 이전 메뉴");
 				System.out.println("=========================================");
 				// 2. 일반게시판 메뉴 입력
 				String menu = In.getStr("메뉴 입력");
@@ -64,6 +65,16 @@ public class BookController {
 						System.out.println("****** 반납 실패 : 정보를 다시 확인해 주세요. *******");
 					break;
 
+				case "4":
+					System.out.println("< 반납 도서 삭제하기 >");
+					result = (Integer) Execute.execute(new BookDeleteService(), null);
+					if (result >= 1)
+						System.out.println("\n*******" +result+"개의 반납 처리가 완료된 도서를 삭제했습니다. *********");
+				else 
+						System.out.println("****** 삭제할 반납 도서가 없습니다. *******");
+				
+					break;
+					
 				case "0": // 이전 메뉴
 					return;
 

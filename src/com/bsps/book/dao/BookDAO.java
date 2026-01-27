@@ -86,7 +86,18 @@ public class BookDAO {
 		DB.close(con, pstmt);
 		return result;
 	}
-	
+
+	public Integer delete() throws Exception {
+		Integer result = 0;
+		con = DB.getConnection();
+		String sql = "delete from  book where status = '반납' ";
+		
+		pstmt = con.prepareStatement(sql);
+		result = pstmt.executeUpdate();
+		
+		DB.close(con, pstmt);
+		return result;
+	}
 	
 
 } // 클래스의 끝
