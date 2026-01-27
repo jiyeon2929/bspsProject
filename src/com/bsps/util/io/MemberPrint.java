@@ -2,6 +2,8 @@ package com.bsps.util.io;
 
 import java.util.List;
 
+import com.bsps.member.vo.MemberVO;
+
 public class MemberPrint {
 	
 	public static void print(List<MemberVO>list) {

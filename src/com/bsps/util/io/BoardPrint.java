@@ -2,6 +2,8 @@ package com.bsps.util.io;
 
 import java.util.List;
 
+import com.bsps.board.vo.BoardVO;
+
 
 
 public class BoardPrint {
