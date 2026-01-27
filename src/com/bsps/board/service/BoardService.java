@@ -17,8 +17,17 @@ public class BoardService {
         dao.write(vo);
     }
 
+    // 🔥 수정 핵심
     public BoardVO view(long no) throws Exception {
-        dao.increaseHit(no);
-        return dao.view(no);
+        BoardVO vo = dao.view(no);   // 1️⃣ 먼저 조회
+
+        if (vo == null) {
+            return null;             // 글 없음
+        }
+
+        dao.increaseHit(no);         // 2️⃣ 조회수 증가
+        vo.setHit(vo.getHit() + 1);  // 화면용 hit 보정
+
+        return vo;
     }
 }

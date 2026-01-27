@@ -11,13 +11,7 @@ import com.bsps.book.vo.BookVO;
 import com.bsps.main.service.Execute;
 
 public class BookController {
-<<<<<<< HEAD
 
-	
-
-
-=======
->>>>>>> branch 'master' of https://github.com/jiyeon2929/bspsProject.git
 
 	// PL이 메서드 이름을 정한다.
 	public void execute() {
