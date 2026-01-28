@@ -38,12 +38,11 @@ public class MemberPrint {
 		System.out.println("--------------------------");
 		System.out.println("+-----------------------------------------+");
 		System.out.println("+아이디: "+vo.getId());
-		System.out.println("+아이디: "+vo.getName());
-		System.out.println("+아이디: "+vo.getGender());
-		System.out.println("+아이디: "+vo.getBirth());
-		System.out.println("+아이디: "+vo.getTel());
-		System.out.println("+아이디: "+vo.getEmail());
-		System.out.println("+아이디: "+vo.getGradeName());
+		System.out.println("+이름: "+vo.getName());
+		System.out.println("+성별: "+vo.getGender());
+		System.out.println("+전화번호: "+vo.getTel());
+		System.out.println("+이메일: "+vo.getEmail());
+		System.out.println("+등급: "+vo.getGradeName());
 		System.out.println("+-----------------------------------------+\n");
 		
 	}

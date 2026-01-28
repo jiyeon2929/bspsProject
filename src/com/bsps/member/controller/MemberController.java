@@ -96,8 +96,16 @@ public class MemberController {
 					} else { // 로그인을 한 경우 내 정보보기 진행
 						//2. 내 정보 보기 - 구현 안 함
 						// Login에서 id를 가져와서 정보를 가져오다.
-						MemberVO vo = (MemberVO) Execute.execute(new MemberViewService(), Login.getId());
-						MemberPrint.print(vo,1);
+						MemberVO param = new MemberVO();
+						param.setId(Login.getId());
+						
+						MemberVO vo = (MemberVO) Execute.execute(new MemberViewService(), param);
+						
+						if(vo==null) {
+							System.out.println("정보 조회 실패: 회원 정보가 없습니다.");
+							return;
+						}
+						MemberPrint.print(vo, 1);
 						
 					}
 					break;

@@ -35,8 +35,17 @@ public class MemberDAO {
 		con = DB.getConnection();
 		
 		//SQL 작성
-		String sql = "select m.id, m.name, m.gradeNo, g.gradeName from member m, grade g "
-				+ " where (id = ? and pw = ?) and (m.gradeNo = g.gradeNo)";
+		String sql = "select m.id, m.name, m.gradeno  gradeNo "
+					 + "from member m"
+					+ " where m.id = ? and m.pw = ? ";
+
+				
+				
+		
+		
+		
+		System.out.println("실행 SQL >>>> "+sql);
+		pstmt = con.prepareStatement(sql);
 		
 		//실행 객체 생성
 		pstmt = con.prepareStatement(sql);
@@ -52,7 +61,7 @@ public class MemberDAO {
 			vo.setId(rs.getString("id"));
 			vo.setName(rs.getString("name"));
 			vo.setGradeNo(rs.getInt("gradeNo"));
-			vo.setGradeName(rs.getString("gradeName"));
+			
 			
 			
 		}
@@ -117,36 +126,36 @@ public class MemberDAO {
 	}
 	
 	//2-1.회원 정보 확인
-	public MemberVO view(String id) throws Exception{
+	public MemberVO view(MemberVO vo) throws Exception{
 		
-		MemberVO vo = null;
+		MemberVO result = null;
 		
 		con = DB.getConnection();
 		
-		String sql = "select m.id, m.name, m.gender, to_char(m.birth, 'yyyy-mm-dd') birth,"
-				+ "m.tel, m.email, g.gradeName from Member m, grade g" + "from member m, grade g"
-				+ "where (id=?) and (m.gradeNo=g.gradeNo)";
+		String sql = 
+			"select id, name, tel, email, gender " +
+			"from member "+
+			"where id = ?";
+		
 		
 		pstmt = con.prepareStatement(sql);
-		pstmt.setString(1, id);
+		pstmt.setString(1, vo.getId());
 		
 		rs = pstmt.executeQuery();
 		
-		if(rs != null && rs.next()){
-			vo=new MemberVO();
-			vo.setId(rs.getString("id"));
-			vo.setName(rs.getString("name"));
-			vo.setGender(rs.getString("gender"));
-			vo.setBirth(rs.getString("birth"));
-			vo.setTel(rs.getString("tel"));
-			vo.setEmail(rs.getString("email"));
-			vo.setGradeName(rs.getString("gradeName"));
+		if(rs.next()){
+			result=new MemberVO();
+			result.setId(rs.getString("id"));
+			result.setName(rs.getString("name"));
+			result.setGender(rs.getString("gender"));
+			result.setTel(rs.getString("tel"));
+			result.setEmail(rs.getString("email"));
 			
 		}
 		
 		DB.close(con, pstmt,rs);
 		
-		return vo;
+		return result;
 	}
 	
 	//3-1. 아이디 찾기

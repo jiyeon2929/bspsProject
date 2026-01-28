@@ -61,7 +61,7 @@ public class Main {
         }
     }
 
-    private static void invalidMenuPrint() {
+    public static void invalidMenuPrint() {
         System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
         System.out.println(" 잘못된 메뉴를 입력하셨습니다. 다시 입력해 주세요.");
         System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
